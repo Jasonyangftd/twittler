@@ -5,8 +5,9 @@
     <script src="data_generator.js"></script>
   </head>
   <body>
+      <h1 class="vertical">Twittler</h1>
+    <button type="button" id="addTweets">More Tweets!</button>
     <script>
-
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
@@ -15,13 +16,23 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + '||	posted at:' + tweet.created_at);
           $tweet.appendTo($body);
           index -= 1;
         }
-
+		
+		
+		var num = 11;
+		function addOneNewTweet() {
+			var tweet = streams.home[num];
+			var $tweet = $('<div></div>');
+			$tweet.text('@' + tweet.user + ': ' + tweet.message + '	||	posted at:' + tweet.created_at);
+			$tweet.appendTo($body);
+			num += 1
+		}
+		
+		setInterval(addOneNewTweet, 500);
       });
-
     </script>
   </body>
 </html>
